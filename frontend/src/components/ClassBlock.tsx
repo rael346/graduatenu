@@ -1,6 +1,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { DNDScheduleCourse } from "../models/types";
+import { DNDScheduleCourse } from "../../../backend/src/types";
 import { CLASS_BLOCK_WIDTH, CLASS_BLOCK_HEIGHT } from "../constants";
 
 interface ClassBlockProps {

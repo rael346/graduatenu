@@ -5,10 +5,10 @@
     "backend"
   ],
   "scripts": {
-    "start": "cd frontend && react-scripts start",
-    "build": "cd frontend && react-scripts build",
+    "start": "cd frontend && yarn start",
+    "build": "cd frontend && yarn build",
     "test": "jest",
-    "eject": "cd frontend && react-scripts eject",
+    "eject": "cd frontend && yarn eject",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {

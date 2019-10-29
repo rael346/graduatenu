@@ -13,7 +13,7 @@ import {
   INEUParentMap,
   CourseTakenTracker,
   IWarning,
-} from "../../frontend/src/models/types";
+} from "./types";
 import { courseCode, getSearchNEUData, doesPrereqExist } from "./json_parser";
 
 /**

@@ -3,7 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 import ClassList from "./ClassList";
 import ClassBlock from "./ClassBlock";
 import EmptyBlock from "./EmptyBlock";
-import { DNDScheduleTerm } from "../models/types";
+import { DNDScheduleTerm } from "../../../backend/src/types";
 import { AddButton } from "./Year/AddButton";
 import styled from "styled-components";
 

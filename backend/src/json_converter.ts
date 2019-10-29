@@ -14,7 +14,7 @@ import {
   IScheduleCourse,
   Requirement,
   UserChoice,
-} from "../../frontend/src/models/types";
+} from "./types";
 
 /**
  * Parses a Requirement to a choice or a course, to show to the user.

@@ -2,7 +2,11 @@ import React from "react";
 import "./App.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import { mockData } from "./data/mockData";
-import { DNDScheduleTerm, DNDSchedule, DNDScheduleYear } from "./models/types";
+import {
+  DNDScheduleTerm,
+  DNDSchedule,
+  DNDScheduleYear,
+} from "../../backend/src/types";
 import styled from "styled-components";
 import { Year } from "./components/Year/Year";
 import { convertTermIdToYear, convertTermIdToSeason } from "./utils";

@@ -3,7 +3,7 @@ import {
   Season,
   Status,
   DNDScheduleCourse,
-} from "../models/types";
+} from "../../../backend/src/types";
 
 const mockClass = (num: number): DNDScheduleCourse => ({
   classId: 3500,

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Schedule } from "../../models/types";
+import { Schedule } from "../../../../backend/src/types";
 import { CLASS_BLOCK_WIDTH } from "../../constants";
 
 interface YearBottomProps {

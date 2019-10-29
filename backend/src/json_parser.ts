@@ -15,7 +15,7 @@ import {
   IScheduleCourse,
   UserChoice,
   CourseTakenTracker,
-} from "../../frontend/src/models/types";
+} from "./types";
 
 /**
  * Returns if the classList contains the given class, by attr and course #.
