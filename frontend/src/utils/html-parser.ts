@@ -10,8 +10,6 @@ import {
   INEUCourse,
 } from "../models/types";
 
-import { courseCode, doesPrereqExist } from "./generate-warnings";
-
 import { getSearchNEUData } from "../../../backend/src/json_parser";
 
 /**
@@ -70,6 +68,12 @@ export const parse_audit = (
   return schedule;
 };
 
+/**
+ * Generates a ScheduleYear with all of the courses in that year.
+ * @param termMap all of the courses taken, organized by term.
+ * @param year the year we're producing a ScheduleYear for.
+ * @return a ScheduleYear with the appropriate classes taken.
+ */
 const sort_classes_into_year = (
   termMap: { [key: number]: ScheduleCourse[] },
   year: number
