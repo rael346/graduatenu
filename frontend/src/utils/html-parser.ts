@@ -233,7 +233,20 @@ const parse_courses = (audit: string, parents: INEUParentMap): INEUCourse[] => {
     .split("\n")
     .filter(s => course_regex.test(s))
     .map(fillCourse) // convert each string into a complete course.
-    .filter(course => course) as INEUCourse[]; // remove null, undefined, etc.
+    .filter(
+      (
+        course,
+        index,
+        arr // remove undefined and duplicate values
+      ) =>
+        course &&
+        !arr.filter(
+          (
+            c,
+            i // undefined values are removed, so casting is legal
+          ) => JSON.stringify(course) === JSON.stringify(c) && i < index
+        ).length
+    ) as INEUCourse[];
 };
 
 /**
