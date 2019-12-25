@@ -3,18 +3,10 @@ import fs from "fs";
 import {
   Schedule,
   ScheduleCourse,
-  ScheduleTerm,
-  IInitialScheduleRep,
-  ICompleteCourse,
   ScheduleYear,
   SeasonEnum,
   StatusEnum,
   INEUParentMap,
-  IRequiredCourse,
-  INEUPrereqCourse,
-  IScheduleCourse,
-  IOldRequirement,
-  INEUClassMap,
   INEUCourse,
 } from "../models/types";
 
@@ -27,7 +19,10 @@ import { getSearchNEUData } from "../../../backend/src/json_parser";
  * @param auditpath  the path to the degree audit.
  * @return the schedule described by the degree audit.
  */
-function parse_audit(auditpath: string, parents: INEUParentMap): Schedule {
+export const parse_audit = (
+  auditpath: string,
+  parents: INEUParentMap
+): Schedule => {
   // open the file at the path
   const audit: string = fs.readFileSync(auditpath, "utf-8");
   // get all of the parsed courses
@@ -73,7 +68,7 @@ function parse_audit(auditpath: string, parents: INEUParentMap): Schedule {
   }
 
   return schedule;
-}
+};
 
 const sort_classes_into_year = (
   termMap: { [key: number]: ScheduleCourse[] },
@@ -193,7 +188,7 @@ const parse_courses = (audit: string, parents: INEUParentMap): INEUCourse[] => {
     );
 
     // uses some magic to hunt down all of the course information.
-    const season: SeasonEnum = courseString.substring(0, 2) as Season; // guaranteed by regex
+    const season: SeasonEnum = courseString.substring(0, 2) as SeasonEnum; // guaranteed by regex
     const year: number | undefined = parseInt(courseString.substring(2, 4), 10);
     const subject: string = courseString.substring(4, 9).replace(/\s/g, "");
     const termId: number | undefined = get_termid(season, year);
@@ -238,7 +233,7 @@ const parse_courses = (audit: string, parents: INEUParentMap): INEUCourse[] => {
     .split("\n")
     .filter(s => course_regex.test(s))
     .map(fillCourse) // convert each string into a complete course.
-    .filter(course => course); // remove null, undefined, etc.
+    .filter(course => course) as INEUCourse[]; // remove null, undefined, etc.
 };
 
 /**
@@ -258,20 +253,20 @@ const get_termid = (
   let termid: number = (2000 + year) * 100;
 
   switch (season) {
-    case "FL": // Fall term
+    case SeasonEnum.FL: // Fall term
       // add 1 to the year as well
       termid += 110;
       break;
-    case "SP": // Spring term
+    case SeasonEnum.SP: // Spring term
       termid += 30;
       break;
-    case "S1": // Summer 1 term
+    case SeasonEnum.S1: // Summer 1 term
       termid += 40;
       break;
-    case "S2": // Summer 2 term
+    case SeasonEnum.S2: // Summer 2 term
       termid += 60;
       break;
-    case "SM": // Full Summer term
+    case SeasonEnum.SM: // Full Summer term
       termid += 50;
       break;
     default:
