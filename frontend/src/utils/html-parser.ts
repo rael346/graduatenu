@@ -377,7 +377,7 @@ const get_graddate = (audit: string): Date => {
 const get_majors = (audit: string): string[] => {
   audit.split("/n").forEach((line: string) => {
     if (line.search("Major") !== -1) {
-      return line.substring(line.search('">') + 2, line.search(" - Major"));
+      return [line.substring(line.search('">') + 2, line.search(" - Major"))];
     }
   });
   return [];
