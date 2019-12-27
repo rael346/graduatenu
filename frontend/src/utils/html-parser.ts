@@ -316,7 +316,7 @@ const get_nupaths = (audit: string, satisfied: boolean): NUPath[] => {
    */
   const get_nupath = (line: string): NUPath | undefined => {
     if (-1 === line.indexOf("(")) return undefined;
-    const nupathInd = line.indexOf("(") + 1;
+    const nupathInd: number = line.indexOf("(") + 1;
     return line.substring(nupathInd, nupathInd + 2) as NUPath;
   };
 
@@ -338,4 +338,47 @@ const get_nupaths = (audit: string, satisfied: boolean): NUPath[] => {
           ) => JSON.stringify(nupath) === JSON.stringify(n) && i < index
         ).length
     ) as NUPath[];
+};
+
+/**
+ * Retrieves the catalog year from the degree audit.
+ * @param audit the full text of the degree audit.
+ * @return the number of the catalog year.
+ */
+const get_catalogyear = (audit: string): number => {
+  const yearInd: number =
+    audit.search("CATALOG YEAR: ") + "CATALOG YEAR: ".length;
+  return parseInt(audit.substring(yearInd, yearInd + 4).replace(/\s/g, ""));
+};
+
+/**
+ * Retrieves the expected graduation date listed on the degree audit.
+ * @param audit the full text of the degree audit.
+ * @return the graduation date.
+ */
+const get_graddate = (audit: string): Date => {
+  const dateInd: number =
+    audit.search("GRADUATION DATE: ") + "GRADUATION DATE: ".length;
+
+  return new Date(
+    parseInt("20".concat(audit.substring(dateInd + 6, dateInd + 8)), 10),
+    parseInt(audit.substring(dateInd, dateInd + 2), 10),
+    parseInt(audit.substring(dateInd + 3, dateInd + 5), 10)
+  );
+};
+
+/**
+ * Retrieves the major listed on the degree audit.
+ * TODO: find multiple majors.
+ * TODO: create a data definition that includes every major.
+ * @param audit the full text of the degree audit.
+ * @return the line at which the major can be found.
+ */
+const get_majors = (audit: string): string[] => {
+  audit.split("/n").forEach((line: string) => {
+    if (line.search("Major") !== -1) {
+      return line.substring(line.search('">') + 2, line.search(" - Major"));
+    }
+  });
+  return [];
 };
