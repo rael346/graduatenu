@@ -8,6 +8,7 @@ import {
   StatusEnum,
   INEUParentMap,
   INEUCourse,
+  NUPath,
 } from "../models/types";
 
 import { getSearchNEUData } from "../../../backend/src/json_parser";
@@ -51,7 +52,7 @@ export const parse_audit = (
   const schedule: Schedule = {
     years: [],
     yearMap: {},
-    id: "example-schedule",
+    id: "degree-audit schedule",
   };
 
   // get all the years
@@ -186,7 +187,7 @@ const parse_courses = (audit: string, parents: INEUParentMap): INEUCourse[] => {
    * @param cstring the line of text from the degree audit that should contain a course.
    * @return the course if it can be found, undefined otherwise.
    */
-  const fillCourse = (cstring: string): INEUCourse | undefined => {
+  const fill_course = (cstring: string): INEUCourse | undefined => {
     const courseString: string = cstring.substring(
       cstring.search("(FL|SP|S1|S2|SM)\\d\\d")
     );
@@ -236,7 +237,7 @@ const parse_courses = (audit: string, parents: INEUParentMap): INEUCourse[] => {
   return audit
     .split("\n")
     .filter(s => course_regex.test(s))
-    .map(fillCourse) // convert each string into a complete course.
+    .map(fill_course) // convert each string into a complete course.
     .filter(
       (
         course,
@@ -293,4 +294,48 @@ const get_termid = (
   }
 
   return termid;
+};
+
+/**
+ * Retrieves all of the NUPath requirements from a degree audit.
+ * @param audit the full text of the degree audit.
+ * @param satisfied whether to include the NUPaths that are on track to be satisfied.
+ * @return a list of NUPath requirements to be fulfilled.
+ */
+const get_nupaths = (audit: string, satisfied: boolean): NUPath[] => {
+  let nupath_regex: RegExp;
+
+  // note: remove satisfied input (or use it) to produce desired variable
+  if (satisfied) nupath_regex = new RegExp("(>OK |>IP |>NO )");
+  else nupath_regex = new RegExp("(>NO )");
+
+  /**
+   * Parses a line of the degree audit for a NUPath requirement.
+   * @param line the line that contains a NUPath requirement.
+   * @return NUPath if the line contains a NUPath, undefined otherwise
+   */
+  const get_nupath = (line: string): NUPath | undefined => {
+    if (-1 === line.indexOf("(")) return undefined;
+    const nupathInd = line.indexOf("(") + 1;
+    return line.substring(nupathInd, nupathInd + 2) as NUPath;
+  };
+
+  return audit
+    .split("\n")
+    .filter(s => nupath_regex.test(s))
+    .map(get_nupath) // convert each string into a complete course.
+    .filter(
+      (
+        nupath,
+        index,
+        arr // remove undefined and duplicate values
+      ) =>
+        nupath &&
+        !arr.filter(
+          (
+            n,
+            i // undefined values are removed, so casting is legal
+          ) => JSON.stringify(nupath) === JSON.stringify(n) && i < index
+        ).length
+    ) as NUPath[];
 };
