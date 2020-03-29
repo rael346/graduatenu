@@ -47,12 +47,12 @@ class GraduationYearComponent extends React.Component<
   render() {
     const { year, beenEdited } = this.state;
     return (
-      <GenericQuestionTemplate question="What is your expected graduation year?">
+      <GenericQuestionTemplate screen={1}>
         <FormControl error={!year && beenEdited}>
           <InputLabel id="demo-simple-select-label">Academic Year</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
             value={year}
             onChange={this.onChange.bind(this)}
           >

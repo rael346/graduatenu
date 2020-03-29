@@ -143,7 +143,7 @@ class MajorComponent extends React.Component<Props, MajorScreenState> {
       );
     } else {
       return (
-        <GenericQuestionTemplate question="What is your major?">
+        <GenericQuestionTemplate screen={1}>
           <DropDownWrapper>
             {this.renderMajorDropDown()}
             {!!this.state.major && this.renderCoopCycleDropDown()}

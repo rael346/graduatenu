@@ -47,7 +47,7 @@ class AcademicYearComponent extends React.Component<
   render() {
     const { year, beenEdited } = this.state;
     return (
-      <GenericQuestionTemplate question="What is your academic year?">
+      <GenericQuestionTemplate screen={2}>
         <FormControl error={!year && beenEdited}>
           <InputLabel id="demo-simple-select-label">Academic Year</InputLabel>
           <Select

@@ -26,7 +26,7 @@ class MinorsComponent extends React.Component<RouteComponentProps, State> {
 
   render() {
     return (
-      <GenericQuestionTemplate question="Any minors?">
+      <GenericQuestionTemplate screen={2}>
         <TextField
           id="standard-basic"
           value={this.state.minors.join(", ")}
