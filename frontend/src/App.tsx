@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Onboarding } from "./Onboarding/Onboarding";
 import { HomeWrapper } from "./home/HomeWrapper";
-import { NameScreen } from "./Onboarding/NameScreen";
+import { OnboardingInfoScreen } from "./Onboarding/NameScreen";
 import { AcademicYearScreen } from "./Onboarding/AcademicYearScreen";
 import { GraduationYearScreen } from "./Onboarding/GraduationYearScreen";
 import { MajorScreen } from "./Onboarding/MajorScreen";
@@ -25,7 +25,7 @@ export const App = ({
         <Router>
           <Switch>
             <Route path="/home" component={HomeWrapper} />
-            <Route path="/name" component={NameScreen} />
+            <Route path="/onboarding" component={OnboardingInfoScreen} />
             <Route path="/academicYear" component={AcademicYearScreen} />
             <Route path="/graduationYear" component={GraduationYearScreen} />
             <Route path="/major" component={MajorScreen} />

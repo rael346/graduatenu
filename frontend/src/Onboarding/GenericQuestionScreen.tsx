@@ -100,7 +100,7 @@ function renderDots(screen: number): any {
   );
 }
 
-export const GenericQuestionTemplate: React.FC<Props> = ({
+export const GenericOnboardingTemplate: React.FC<Props> = ({
   screen,
   children,
 }) => {

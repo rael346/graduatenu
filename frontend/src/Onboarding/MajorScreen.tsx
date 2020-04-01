@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { GenericQuestionTemplate } from "./GenericQuestionScreen";
+import { GenericOnboardingTemplate } from "./GenericQuestionScreen";
 import { NextButton } from "../components/common/NextButton";
 import { Autocomplete } from "@material-ui/lab";
 import { Major, Schedule } from "../models/types";
@@ -143,7 +143,7 @@ class MajorComponent extends React.Component<Props, MajorScreenState> {
       );
     } else {
       return (
-        <GenericQuestionTemplate screen={1}>
+        <GenericOnboardingTemplate screen={1}>
           <DropDownWrapper>
             {this.renderMajorDropDown()}
             {!!this.state.major && this.renderCoopCycleDropDown()}
@@ -157,7 +157,7 @@ class MajorComponent extends React.Component<Props, MajorScreenState> {
           >
             <NextButton />
           </Link>
-        </GenericQuestionTemplate>
+        </GenericOnboardingTemplate>
       );
     }
   }

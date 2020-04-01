@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { GenericQuestionTemplate } from "./GenericQuestionScreen";
+import { GenericOnboardingTemplate } from "./GenericQuestionScreen";
 import { NextButton } from "../components/common/NextButton";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -101,7 +101,10 @@ type OnboardingScreenState = NameScreenState &
 
 type Props = OnboardingScreenProps & RouteComponentProps;
 
-class NameComponent extends React.Component<Props, OnboardingScreenState> {
+class OnboardingScreenComponent extends React.Component<
+  Props,
+  OnboardingScreenState
+> {
   constructor(props: Props) {
     super(props);
 
@@ -237,7 +240,7 @@ class NameComponent extends React.Component<Props, OnboardingScreenState> {
           value={year}
           onChange={this.onChangeYear.bind(this)}
           style={{ marginTop: 4, minWidth: 326 }}
-          // label = "h"
+          labelWidth={110}
         >
           <MenuItem value={1}>1st Year</MenuItem>
           <MenuItem value={2}>2nd Year</MenuItem>
@@ -270,6 +273,7 @@ class NameComponent extends React.Component<Props, OnboardingScreenState> {
           value={gradYear}
           onChange={this.onChangeGradYear.bind(this)}
           style={{ marginTop: 4, minWidth: 326 }}
+          labelWidth={115}
         >
           <MenuItem value={2019}>2019</MenuItem>
           <MenuItem value={2020}>2020</MenuItem>
@@ -339,7 +343,7 @@ class NameComponent extends React.Component<Props, OnboardingScreenState> {
       // renders all of the different drop downs and for the next button, ensures that all
       // required fields are filled out before allowing it to move to the next screen
       return (
-        <GenericQuestionTemplate screen={0}>
+        <GenericOnboardingTemplate screen={0}>
           {this.renderNameTextField(textFieldStr, beenEditedName)}
           {this.renderAcademicYearSelect(year, beenEditedYear)}
           {this.renderGradYearSelect(gradYear, beenEditedGrad)}
@@ -369,7 +373,7 @@ class NameComponent extends React.Component<Props, OnboardingScreenState> {
               <NextButton />
             </div>
           )}
-        </GenericQuestionTemplate>
+        </GenericOnboardingTemplate>
       );
     }
   }
@@ -405,7 +409,7 @@ const mapStateToProps = (state: AppState) => ({
  * When rendering the connecting component, the props assigned in mapStateToProps, do not need to
  * be passed down as props from the parent component.
  */
-export const NameScreen = connect(
+export const OnboardingInfoScreen = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(NameComponent));
+)(withRouter(OnboardingScreenComponent));

@@ -7,7 +7,7 @@ import {
   MenuItem,
   FormHelperText,
 } from "@material-ui/core";
-import { GenericQuestionTemplate } from "./GenericQuestionScreen";
+import { GenericOnboardingTemplate } from "./GenericQuestionScreen";
 import { NextButton } from "../components/common/NextButton";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
@@ -47,12 +47,12 @@ class AcademicYearComponent extends React.Component<
   render() {
     const { year, beenEdited } = this.state;
     return (
-      <GenericQuestionTemplate screen={2}>
+      <GenericOnboardingTemplate screen={2}>
         <FormControl error={!year && beenEdited}>
-          <InputLabel id="demo-simple-select-label">Academic Year</InputLabel>
+          <InputLabel id="demo-simple-outlined-label">Academic Year</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
             value={year}
             onChange={this.onChange.bind(this)}
           >
@@ -81,7 +81,7 @@ class AcademicYearComponent extends React.Component<
             <NextButton />
           </div>
         )}
-      </GenericQuestionTemplate>
+      </GenericOnboardingTemplate>
     );
   }
 }

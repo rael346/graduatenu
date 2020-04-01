@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { GenericQuestionTemplate } from "./GenericQuestionScreen";
+import { GenericOnboardingTemplate } from "./GenericQuestionScreen";
 import { NextButton } from "../components/common/NextButton";
 
 interface State {
@@ -26,7 +26,7 @@ class MinorsComponent extends React.Component<RouteComponentProps, State> {
 
   render() {
     return (
-      <GenericQuestionTemplate screen={2}>
+      <GenericOnboardingTemplate screen={2}>
         <TextField
           id="standard-basic"
           value={this.state.minors.join(", ")}
@@ -47,7 +47,7 @@ class MinorsComponent extends React.Component<RouteComponentProps, State> {
         >
           <NextButton />
         </Link>
-      </GenericQuestionTemplate>
+      </GenericOnboardingTemplate>
     );
   }
 }
