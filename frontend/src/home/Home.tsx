@@ -40,6 +40,8 @@ import {
   getPlanIdsFromState,
   getLinkSharingFromState,
   getScheduleDataFromState,
+  getSchedulesFromState,
+  getActiveScheduleFromState,
 } from "../state";
 import {
   updateSemesterAction,
@@ -63,10 +65,17 @@ import {
   updatePlanForUser,
 } from "../services/PlanService";
 import { findMajorFromName } from "../utils/plan-helpers";
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import Loader from "react-loader-spinner";
 import { ExcelUpload } from "../components/ExcelUpload";
 import { SwitchPlanPopper } from "./SwitchPlanPopper";
+import AddIcon from "@material-ui/icons/Add";
 
 const OuterContainer = styled.div`
   display: flex;
@@ -195,6 +204,8 @@ interface ReduxStoreHomeProps {
   planName: string | undefined;
   linkSharing: boolean;
   getCurrentScheduleData: () => ScheduleSlice;
+  activeSchedule: NamedSchedule;
+  schedules: NamedSchedule[];
 }
 
 interface ReduxDispatchHomeProps {
@@ -537,6 +548,33 @@ class HomeComponent extends React.Component<Props, HomeState> {
                     </PlanPopperButton>
                   </PlanContainer>
                   <ExcelUpload setSchedule={this.setSchedule.bind(this)} />
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    // TODO: make color the same color as YearTop
+                    // className={classes.button}
+                    startIcon={<AddIcon />}
+                  >
+                    Add Plan
+                  </Button>
+                  <FormControl>
+                    <Select
+                      value={
+                        this.props.activeSchedule
+                          ? this.props.activeSchedule.name
+                          : ""
+                      }
+                      onChange={() => {}}
+                    >
+                      {this.props.schedules.map(namedSchedule => {
+                        return (
+                          <MenuItem value={namedSchedule.name}>
+                            {namedSchedule.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
                 </HomeButtons>
               </HomeAboveSchedule>
               {this.renderYears()}
@@ -563,6 +601,8 @@ const mapStateToProps = (state: AppState) => ({
   planIds: getPlanIdsFromState(state),
   linkSharing: getLinkSharingFromState(state),
   getCurrentScheduleData: () => getScheduleDataFromState(state),
+  activeSchedule: getActiveScheduleFromState(state),
+  schedules: getSchedulesFromState(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
