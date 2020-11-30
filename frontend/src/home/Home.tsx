@@ -19,7 +19,6 @@ import {
 } from "../../../common/types";
 import { addPrereqsToSchedule } from "../../../common/prereq_loader";
 import styled from "styled-components";
-import { Year } from "../components/Year";
 import { TransferCredits } from "../components/TransferCreditHolder";
 import {
   convertTermIdToYear,
@@ -84,6 +83,7 @@ import { ExcelUpload } from "../components/ExcelUpload";
 import { SwitchPlanPopper } from "./SwitchPlanPopper";
 import { resetUserAction } from "../state/actions/userActions";
 import Cookies from "universal-cookie";
+import ScheduleComponent from "./Schedule";
 
 const OuterContainer = styled.div`
   display: flex;
@@ -441,26 +441,6 @@ class HomeComponent extends React.Component<Props, HomeState> {
     }
   }
 
-  renderYears() {
-    if (this.state.fetchedPlan) {
-      return this.props.schedule.years.map((year: number, index: number) => (
-        <Year key={index} index={index} schedule={this.props.schedule} />
-      ));
-    } else {
-      return (
-        <SpinnerWrapper>
-          <Loader
-            type="Puff"
-            color="#f50057"
-            height={100}
-            width={100}
-            timeout={5000} //5 secs
-          />
-        </SpinnerWrapper>
-      );
-    }
-  }
-
   renderTransfer() {
     // If a user is currently logged in, wait until plans are fetched to render
     if (!this.state.fetchedPlan) {
@@ -608,7 +588,7 @@ class HomeComponent extends React.Component<Props, HomeState> {
                   />
                 </HomeButtons>
               </HomeAboveSchedule>
-              {this.renderYears()}
+              <ScheduleComponent schedule={this.props.schedule} />
               {this.renderTransfer()}
             </Container>
           </LeftScroll>
