@@ -25,7 +25,7 @@ interface SchedulesListProps {
   readonly namedScheduleViews: Array<NamedScheduleView>;
 }
 
-const STUDENT: StudentIdentifier = {
+export const STUDENT: StudentIdentifier = {
   name: "Mario Speedwagon",
   nuid: "12345",
   userId: 1,
