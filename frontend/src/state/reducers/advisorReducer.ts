@@ -1,5 +1,6 @@
 import produce from "immer";
 import { getType } from "typesafe-actions";
+import { Student } from "../../models/types";
 import { AdvisorAction } from "../actions";
 import {
   setEmail,
@@ -9,11 +10,6 @@ import {
   setToken,
   setUserId,
 } from "../actions/advisorActions";
-
-export interface Student {
-  readonly email: string;
-  readonly name: string;
-}
 
 export interface AdvisorState {
   readonly email: string;

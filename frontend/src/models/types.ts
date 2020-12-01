@@ -42,18 +42,24 @@ export enum SeasonEnum {
 }
 
 /**
+ * Represents the viewable information of a schedule.
+ */
+export interface ScheduleView {
+  id?: number;
+  schedule: DNDSchedule;
+  major: string;
+  coopCycle: string;
+}
+
+/**
  * Represents a schedule with loading and error information
  */
-export interface ScheduleSlice {
-  id?: number;
+export interface ScheduleSlice extends ScheduleView {
   currentClassCounter: number;
   isScheduleLoading: boolean; // not used right now
   scheduleError: string; // not used right now
-  schedule: DNDSchedule;
   warnings: IWarning[];
   courseWarnings: CourseWarning[];
-  major: string;
-  coopCycle: string;
 }
 
 /**
@@ -70,6 +76,14 @@ export interface PastPresentSchedule {
 export interface NamedSchedule {
   name: string;
   schedule: PastPresentSchedule;
+}
+
+/**
+ * Represents a named schedule with only viewable information.
+ */
+export interface NamedScheduleView {
+  name: string;
+  scheduleView: ScheduleView;
 }
 
 /**
@@ -225,6 +239,30 @@ export interface IUpdateUserPassword {
   old_password: string;
   new_password: string;
   confirm_password: string;
+}
+
+/**
+ * A model for data pertaining to identifying and displaying a user.
+ */
+export interface StudentIdentifier {
+  readonly email: string;
+  readonly name: string;
+  readonly userId: number;
+  readonly nuid: string;
+}
+
+/**
+ * A model for the full set of a student's data.
+ */
+export interface FullStudentData {
+  readonly email: string;
+  readonly major: string;
+  readonly username: string;
+  readonly academic_year: number;
+  readonly graduation_year: number;
+  readonly coop_cycle: string;
+  readonly nu_id: string;
+  readonly imageUrl: string;
 }
 
 /** ------------------------------------------------------------------------
