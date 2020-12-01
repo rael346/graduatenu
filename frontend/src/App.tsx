@@ -16,6 +16,8 @@ import { TemplatesPage } from "./advising/Templates";
 import { GenericAdvisingTemplateComponent } from "./advising/GenericAdvisingTemplate";
 import TransferableCreditScreen from "./Onboarding/TransferableCreditScreen";
 import { RedirectScreen } from "./Onboarding/RedirectScreen";
+import ManageStudentsSchedule from "./advising/ManageStudentsSchedule";
+import { STUDENT } from "./advising/ManageStudentsSchedule";
 
 export const App = ({
   store,
@@ -61,6 +63,10 @@ const AdvisorRouter = (props: any) => {
       <Switch>
         <Route path={`${path}/notifications`} component={NotificationsPage} />
         <Route path={`${path}/manageStudents`} component={ManageStudents} />
+        <Route
+          path={`${path}/manageStudentSchedule`}
+          render={() => <ManageStudentsSchedule student={STUDENT} />}
+        />
         <Route path={`${path}/templates`} component={TemplatesPage} />
       </Switch>
     </GenericAdvisingTemplateComponent>

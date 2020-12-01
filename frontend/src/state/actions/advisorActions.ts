@@ -1,5 +1,5 @@
 import { createAction } from "typesafe-actions";
-import { Student } from "../reducers/advisorReducer";
+import { StudentIdentifier } from "../../models/types";
 
 export const setEmail = createAction("advisor/SET_EMAIL", (email: string) => ({
   email,
@@ -26,7 +26,7 @@ export const setImage = createAction("advisor/SET_IMAGE", (image: string) => ({
 
 export const setStudents = createAction(
   "advisor/SET_STUDENTS",
-  (students: Array<Student>) => ({
+  (students: Array<StudentIdentifier>) => ({
     students,
   })
 )();

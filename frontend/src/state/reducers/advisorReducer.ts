@@ -1,6 +1,6 @@
 import produce from "immer";
 import { getType } from "typesafe-actions";
-import { Student } from "../../models/types";
+import { StudentIdentifier } from "../../models/types";
 import { AdvisorAction } from "../actions";
 import {
   setEmail,
@@ -17,7 +17,7 @@ export interface AdvisorState {
   readonly token?: string;
   readonly userId?: number;
   readonly image: string;
-  readonly students: Array<Student>;
+  readonly students: Array<StudentIdentifier>;
 }
 
 const initialState: AdvisorState = {
