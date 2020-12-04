@@ -8,6 +8,13 @@ import {
   plansReducer,
 } from "./apiReducer";
 import { advisorReducer, AdvisorState } from "./advisorReducer";
+import {
+  UserAction,
+  MajorsApiAction,
+  PlansApiAction,
+  UserPlansAction,
+  AdvisorAction,
+} from "../actions";
 
 export interface AppState {
   userState: UserState;
@@ -24,3 +31,10 @@ export const rootReducer = combineReducers({
   userPlansState: userPlansReducer,
   advisorState: advisorReducer,
 });
+
+export type AppAction =
+  | UserAction
+  | MajorsApiAction
+  | PlansApiAction
+  | UserPlansAction
+  | AdvisorAction;

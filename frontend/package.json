@@ -12,6 +12,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.31",
     "@material-ui/styles": "^4.7.1",
+    "@reduxjs/toolkit": "^1.5.0",
     "apollo-boost": "^0.4.4",
     "cross-env": "5.0.5",
     "dataloader": "^2.0.0",

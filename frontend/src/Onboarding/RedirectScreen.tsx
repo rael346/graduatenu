@@ -20,6 +20,7 @@ import { getScheduleCoursesFromSimplifiedCourseDataAPI } from "../utils/course-h
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 import ErrorIcon from "@material-ui/icons/Error";
+import { AppDispatch } from "../state/store";
 
 const Centered = styled.div`
   position: absolute;
@@ -54,7 +55,7 @@ interface Props {
 }
 
 export const RedirectScreen: React.FC<Props> = ({ redirectUrl }) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { academicYear, graduationYear, isAdvisor } = useSelector(
     (state: AppState) => ({
       academicYear: getAcademicYearFromState(state),
@@ -67,7 +68,7 @@ export const RedirectScreen: React.FC<Props> = ({ redirectUrl }) => {
   // component did mount
   useEffect(() => {
     setIsLoading(true);
-    fetchMajorsAndPlans()(dispatch).then(majors => {
+    dispatch(fetchMajorsAndPlans()).then(() => {
       const cookie = Cookies.get(AUTH_TOKEN_COOKIE_KEY);
       if (cookie) {
         Cookies.remove(AUTH_TOKEN_COOKIE_KEY, {

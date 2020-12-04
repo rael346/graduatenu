@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import thunk, { ThunkDispatch } from "redux-thunk";
 import { logger } from "redux-logger";
-import { rootReducer, AppState } from "./reducers/state";
+import { rootReducer, AppState, AppAction } from "./reducers/state";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 export function configureStore(initialState?: AppState) {
@@ -14,3 +14,5 @@ export function configureStore(initialState?: AppState) {
   );
   return { store };
 }
+
+export type AppDispatch = ThunkDispatch<AppState, any, AppAction>;
