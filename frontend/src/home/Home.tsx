@@ -65,6 +65,7 @@ import {
   getAuthToken,
   removeAuthTokenFromCookies,
 } from "../utils/auth-helpers";
+import { fetchUsersPlansAction } from "../state/thunks/userPlansThunks";
 
 const OuterContainer = styled.div`
   display: flex;
