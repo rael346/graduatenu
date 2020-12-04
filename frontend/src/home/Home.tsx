@@ -53,8 +53,8 @@ import {
 } from "../state/actions/userPlansActions";
 import { EditPlanPopper } from "./EditPlanPopper";
 import {
-  findAllPlansForUser,
-  updatePlanForUser,
+  findAllPlansForUserFromAPI,
+  updatePlanForUserInAPI,
 } from "../services/PlanService";
 import { AddPlan } from "./AddPlanPopper";
 import { Button, Theme, withStyles } from "@material-ui/core";
@@ -243,7 +243,7 @@ class HomeComponent extends React.Component<Props, HomeState> {
 
   componentDidMount() {
     const token = getAuthToken();
-    findAllPlansForUser(this.props.userId!, token).then(
+    findAllPlansForUserFromAPI(this.props.userId!, token).then(
       (plans: IPlanData[]) => {
         this.props.setUserPlans(plans, this.props.academicYear);
 
@@ -442,7 +442,7 @@ class HomeComponent extends React.Component<Props, HomeState> {
 
   async updatePlan(showAlert = true) {
     const token = getAuthToken();
-    await updatePlanForUser(
+    await updatePlanForUserInAPI(
       this.props.userId!,
       token,
       this.props.activePlan!.id,

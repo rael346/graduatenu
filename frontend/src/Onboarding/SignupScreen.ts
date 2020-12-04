@@ -8,7 +8,7 @@ export {};
 // import { Major } from "../../../common/types";
 // import { DNDSchedule, ScheduleSlice, IUpdateUserData } from "../models/types";
 // import { PrimaryButton } from "../components/common/PrimaryButton";
-// import { registerUser } from "../services/UserService";
+// import { registerUserInAPI } from "../services/UserService";
 // import { Dispatch } from "redux";
 // import {
 //   addPlanIdAction,
@@ -20,7 +20,7 @@ export {};
 // } from "../state/actions/userActions";
 // import { addNewSchedule } from "../state/actions/userPlansActions";
 
-// import { createPlanForUser } from "../services/PlanService";
+// import { createPlanForUserInAPI } from "../services/PlanService";
 // import { getScheduleDataFromState } from "../state";
 // import { setCoopCycle } from "../state/actions/scheduleActions";
 // import Cookies from "js-cookie";
@@ -174,14 +174,14 @@ export {};
 //         coopCycle: this.props.planStr ? this.props.planStr : undefined,
 //       };
 
-//       registerUser(user).then(response => {
+//       registerUserInAPI(user).then(response => {
 //         if (response.errors) {
 //           this.setState({
 //             errorEmail: response.errors.email,
 //           });
 //         } else {
 //           const scheduleData: ScheduleSlice = this.props.getCurrentScheduleData();
-//           createPlanForUser(response.user.id, response.user.token, {
+//           createPlanForUserInAPI(response.user.id, response.user.token, {
 //             name: "Plan 1",
 //             link_sharing_enabled: false,
 //             schedule: scheduleData.schedule,

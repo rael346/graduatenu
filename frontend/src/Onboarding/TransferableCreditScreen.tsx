@@ -14,7 +14,7 @@ import {
 import { APExamGroups2020To2021 } from "../../../common/ap_exams";
 import { IBExamGroups2020To2021 } from "../../../common/ib_exams";
 import { ScheduleSlice } from "../models/types";
-import { createPlanForUser } from "../services/PlanService";
+import { createPlanForUserInAPI } from "../services/PlanService";
 import {
   getAcademicYearFromState,
   getGraduationYearFromState,
@@ -26,7 +26,7 @@ import {
 } from "../state";
 import { AppState } from "../state/reducers/state";
 import { addNewPlanAction } from "../state/actions/userPlansActions";
-import { updateUser } from "../services/UserService";
+import { updateUserInAPI } from "../services/UserService";
 import { getAuthToken } from "../utils/auth-helpers";
 import { getSimplifiedCourseData } from "../utils/completed-courses-helpers";
 import { generateInitialSchedule } from "../utils";
@@ -179,7 +179,7 @@ const TransferableCreditScreen: React.FC = () => {
     const token = getAuthToken();
 
     return new Promise((resolve, reject) => {
-      const updateUserPromise = () => updateUser(
+      const updateUserPromise = () => updateUserInAPI(
         {
           id: userId!,
           token: token,
@@ -203,7 +203,7 @@ const TransferableCreditScreen: React.FC = () => {
 
       const createPlanPromise = () => {
         const [schedule, courseCounter] = generateInitialSchedule(academicYear, graduationYear, completedCourses);
-        createPlanForUser(userId!, token, {
+        createPlanForUserInAPI(userId!, token, {
         name: "Plan 1",
         link_sharing_enabled: false,
         schedule: schedule,

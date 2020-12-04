@@ -38,3 +38,6 @@ export type AppAction =
   | PlansApiAction
   | UserPlansAction
   | AdvisorAction;
+
+export type ApiStatus = "idle" | "loading" | "succeeded" | "failed";
+export type ApiError = string | null;

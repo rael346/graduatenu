@@ -27,7 +27,7 @@ import {
 } from "../state/actions/userPlansActions";
 import { IPlanData } from "../models/types";
 import Loader from "react-loader-spinner";
-import { deletePlanForUser } from "../services/PlanService";
+import { deletePlanForUserInAPI } from "../services/PlanService";
 import { Alert } from "@material-ui/lab";
 import { getAuthToken } from "../utils/auth-helpers";
 
@@ -165,7 +165,7 @@ export class SwitchPlanPopperComponent extends React.Component<
       });
     } else if (this.props.userId) {
       const token = getAuthToken();
-      deletePlanForUser(this.props.userId, planId, token);
+      deletePlanForUserInAPI(this.props.userId, planId, token);
       this.props.deletePlan(name);
     }
   }

@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../services/UserService";
-import {
-  setUserAction,
-  setCompletedCoursesAction,
-  setTransferCoursesAction,
-} from "../state/actions/userActions";
 import { AppState } from "../state/reducers/state";
 import {
   getAcademicYearFromState,
@@ -16,11 +10,11 @@ import {
 } from "../state";
 import { fetchMajorsAndPlans } from "../utils/fetchMajorsAndPlans";
 import { AUTH_TOKEN_COOKIE_KEY } from "../utils/auth-helpers";
-import { getScheduleCoursesFromSimplifiedCourseDataAPI } from "../utils/course-helpers";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 import ErrorIcon from "@material-ui/icons/Error";
 import { AppDispatch } from "../state/store";
+import { fetchUserAction } from "../state/thunks/userThunks";
 
 const Centered = styled.div`
   position: absolute;
@@ -84,23 +78,9 @@ export const RedirectScreen: React.FC<Props> = ({ redirectUrl }) => {
           path: "/",
           domain: window.location.hostname,
         }); // set persisting cookie for all paths
-        fetchUser(cookie)
-          .then(response => {
-            dispatch(setUserAction(response.user));
-            Promise.all([
-              getScheduleCoursesFromSimplifiedCourseDataAPI(
-                response.user.coursesCompleted
-              ).then(courses => {
-                dispatch(setCompletedCoursesAction(courses));
-              }),
-              getScheduleCoursesFromSimplifiedCourseDataAPI(
-                response.user.coursesTransfer
-              ).then(courses => {
-                dispatch(setTransferCoursesAction(courses));
-              }),
-            ]).then(_ => setIsLoading(false));
-          })
-          .catch(e => console.log(e));
+        dispatch(fetchUserAction(cookie)).then(() => {
+          setIsLoading(false);
+        });
       }
     });
   }, []);

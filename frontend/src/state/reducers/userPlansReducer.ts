@@ -40,7 +40,7 @@ import {
   sumCreditsFromList,
 } from "../../utils";
 import { Schedule, ScheduleCourse } from "../../../../common/types";
-import { updatePlanForUser } from "../../services/PlanService";
+import { updatePlanForUserInAPI } from "../../services/PlanService";
 import { getAuthToken } from "../../utils/auth-helpers";
 
 export interface UserPlansState {
@@ -71,7 +71,7 @@ export const userPlansReducer = (
         draft.plans[draft.activePlan!].lastViewed = timeNow;
 
         // will happen asynchronously
-        updatePlanForUser(
+        updatePlanForUserInAPI(
           userId,
           getAuthToken(),
           draft.plans[draft.activePlan!].id,

@@ -6,7 +6,7 @@ import {
 } from "../models/types";
 
 // unused right now as Khoury auth is being used
-export const registerUser = (user: IUpdateUserData) =>
+export const registerUserInAPI = (user: IUpdateUserData) =>
   fetch(`/api/users`, {
     method: "POST",
     body: JSON.stringify({ user: user }),
@@ -16,7 +16,7 @@ export const registerUser = (user: IUpdateUserData) =>
   }).then(response => response.json());
 
 // unused right now as Khoury auth is being used
-export const loginUser = (user: ILoginData) =>
+export const loginUserInAPI = (user: ILoginData) =>
   fetch("/api/users/login", {
     method: "POST",
     body: JSON.stringify({ user: user }),
@@ -26,7 +26,7 @@ export const loginUser = (user: ILoginData) =>
   }).then(response => response.json());
 
 // unused right now as Khoury auth is being used
-export const updatePassword = (
+export const updatePasswordInAPI = (
   token: string,
   userPassword: IUpdateUserPassword
 ) =>
@@ -43,7 +43,7 @@ export const updatePassword = (
  * Service function object to get the user data
  * @param token
  */
-export const fetchUser = (token: string) =>
+export const fetchUserFromAPI = (token: string) =>
   fetch(`/api/users/current`, {
     method: "GET",
     headers: {
@@ -56,7 +56,7 @@ export const fetchUser = (token: string) =>
  * Service function object to update the user data
  * @param userData
  */
-export const updateUser = (user: IUpdateUser, userData: IUpdateUserData) =>
+export const updateUserInAPI = (user: IUpdateUser, userData: IUpdateUserData) =>
   fetch(`/api/users/${user.id}`, {
     method: "PUT",
     body: JSON.stringify({ user: userData }),

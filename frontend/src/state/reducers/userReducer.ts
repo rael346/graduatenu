@@ -1,3 +1,4 @@
+import { ApiStatus, ApiError } from "./state";
 import { IRequiredCourse } from "./../../../../common/types";
 import produce from "immer";
 import { getType } from "typesafe-actions";
@@ -15,20 +16,17 @@ import {
   setCompletedCoursesAction,
   setCompletedRequirementsAction,
   setTransferCoursesAction,
+  setUserStatusPendingAction,
+  setUserStatusErrorAction,
 } from "../actions/userActions";
 import { IUserData } from "../../models/types";
 import { ScheduleCourse } from "../../../../common/types";
-import {
-  convertToDNDCourses,
-  sumCreditsFromList,
-  numToTerm,
-  getNextTerm,
-  produceWarnings,
-} from "../../utils";
 
 export interface UserState {
   user: IUserData;
   completedRequirements: IRequiredCourse[]; // only used in onboarding flow
+  status: ApiStatus;
+  error: ApiError;
 }
 
 const initialState: UserState = {
@@ -47,6 +45,8 @@ const initialState: UserState = {
     completedCourses: [],
   },
   completedRequirements: [],
+  status: "idle",
+  error: null,
 };
 
 export const userReducer = (
@@ -64,6 +64,8 @@ export const userReducer = (
         if (draft.user.transferCourses === undefined) {
           draft.user.transferCourses = [];
         }
+
+        draft.status = "succeeded";
         return draft;
       }
       case getType(setUserMajorAction): {

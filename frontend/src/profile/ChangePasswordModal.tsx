@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Modal, TextField } from "@material-ui/core";
 import { PrimaryButton } from "../components/common/PrimaryButton";
 import { IUpdateUserPassword } from "../models/types";
-import { updatePassword } from "../services/UserService";
+import { updatePasswordInAPI } from "../services/UserService";
 import { getAuthToken } from "../utils/auth-helpers";
 
 const OuterContainer = styled.div`
@@ -46,7 +46,7 @@ const changePassword = (
     confirm_password: confirmPassword,
   };
   const token = getAuthToken();
-  updatePassword(token, changePasswordBody).then(response => {
+  updatePasswordInAPI(token, changePasswordBody).then(response => {
     setError(response.error);
     if (response.error === undefined) {
       setOpen(false);

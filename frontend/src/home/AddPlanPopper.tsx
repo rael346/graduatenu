@@ -19,7 +19,7 @@ import { Major, Schedule, ScheduleCourse } from "../../../common/types";
 import { findMajorFromName } from "../utils/plan-helpers";
 import { addPrereqsToSchedule } from "../../../common/prereq_loader";
 import Loader from "react-loader-spinner";
-import { createPlanForUser } from "../services/PlanService";
+import { createPlanForUserInAPI } from "../services/PlanService";
 import {
   convertToDNDSchedule,
   planToString,
@@ -222,7 +222,7 @@ function AddPlanPopperComponent(props: Props) {
 
   const savePlan = async () => {
     const token = getAuthToken();
-    const plan = await createPlanForUser(userId!, token, {
+    const plan = await createPlanForUserInAPI(userId!, token, {
       name: planName,
       link_sharing_enabled: false,
       schedule: selectedDNDSchedule.current!,

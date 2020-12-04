@@ -5,7 +5,7 @@ import { ICreatePlanData, IPlanData } from "../models/types";
  * @param userId  the user id of the user to be searched
  * @param userToken the JWT token of the user to be searched
  */
-export const findAllPlansForUser = (
+export const findAllPlansForUserFromAPI = (
   userId: number,
   userToken: string
 ): Promise<IPlanData[]> =>
@@ -29,7 +29,7 @@ export const findAllPlansForUser = (
  * @param userToken the JWT token of the user to be modified
  * @param plan  the plan object to be created for this user
  */
-export const createPlanForUser = (
+export const createPlanForUserInAPI = (
   userId: number,
   userToken: string,
   plan: ICreatePlanData
@@ -49,7 +49,7 @@ export const createPlanForUser = (
  * @param planId the id of the plan to be deleted
  * @param userToken the JWT token of the user to be modified
  */
-export const deletePlanForUser = (
+export const deletePlanForUserInAPI = (
   userId: number,
   planId: number,
   userToken: string
@@ -69,7 +69,7 @@ export const deletePlanForUser = (
  * @param planId  the id of the plan being updated
  * @param plan  the plan object to be used as the current plan
  */
-export const updatePlanForUser = (
+export const updatePlanForUserInAPI = (
   userId: number,
   userToken: string,
   planId: number,

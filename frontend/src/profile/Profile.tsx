@@ -23,7 +23,7 @@ import { Dispatch } from "redux";
 import { Major, Schedule } from "../../../common/types";
 import { AppState } from "../state/reducers/state";
 import { planToString } from "../utils";
-import { updateUser } from "../services/UserService";
+import { updateUserInAPI } from "../services/UserService";
 import { IUpdateUser, IUpdateUserData } from "../models/types";
 import { findMajorFromName } from "../utils/plan-helpers";
 import { ChangePasswordModal } from "./ChangePasswordModal";
@@ -272,7 +272,7 @@ const save = (props: SaveProps) => {
         ? props.coop
         : "",
   };
-  updateUser(user, updateUserData);
+  updateUserInAPI(user, updateUserData);
 };
 
 const SaveButton = (props: SaveProps) => {

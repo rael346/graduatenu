@@ -21,8 +21,8 @@ export {};
 // } from "../state/actions/userActions";
 // import { getMajors } from "../state";
 // import { setSchedules } from "../state/actions/userPlansActions";
-// import { loginUser } from "../services/UserService";
-// import { findAllPlansForUser } from "../services/PlanService";
+// import { loginUserInAPI } from "../services/UserService";
+// import { findAllPlansForUserFromAPI } from "../services/PlanService";
 // import { findMajorFromName } from "../utils/plan-helpers";
 // import { AUTH_TOKEN_COOKIE_KEY } from "../utils/auth-helpers";
 // import Cookies from "js-cookie";
@@ -145,7 +145,7 @@ export {};
 //         password: this.state.passwordStr,
 //       };
 
-//       loginUser(user).then(response => {
+//       loginUserInAPI(user).then(response => {
 //         if (response.errors) {
 //           this.setState({
 //             error: "invalid",
@@ -173,7 +173,7 @@ export {};
 //    */
 
 //   findUserPlans(response: any) {
-//     findAllPlansForUser(response.user.id, response.user.token).then(plans => {
+//     findAllPlansForUserFromAPI(response.user.id, response.user.token).then(plans => {
 //       const namedSchedules = plans.map((plan: any) => ({
 //         name: plan.name,
 //         schedule: {
