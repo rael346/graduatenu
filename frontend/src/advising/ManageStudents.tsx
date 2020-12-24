@@ -248,6 +248,13 @@ const BackToStudentLink = styled.div`
   cursor: pointer;
 `;
 
+const BottomButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 8px;
+`;
+
 const EMPTY_STUDENT_LIST: StudentProps[] = [];
 
 type StudentViewMode = "overview" | "viewSchedule" | "editSchedule";
@@ -468,6 +475,9 @@ const ExpandedStudentPlan: React.FC<ExpandedStudentPlanProps> = props => {
             />
           )}
         </ScheduleWrapper>
+        <BottomButtonWrapper>
+          <ColoredButton onClick={() => {}}>Approve</ColoredButton>
+        </BottomButtonWrapper>
       </ExpandedStudentContainer>
     </FullScheduleViewContainer>
   );
