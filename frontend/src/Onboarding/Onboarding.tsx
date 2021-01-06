@@ -11,6 +11,9 @@ import {
   simulateKhouryStudentLogin,
 } from "../services/UserService";
 
+const ADMIN_LINK =
+  "https://admin-alpha.khoury.northeastern.edu/teaching/graduatenulogin/";
+
 const Header = styled.div`
   display: flex;
   flex-direction: row;
@@ -196,10 +199,7 @@ export class Onboarding extends React.Component<Props> {
         <Header>
           <h1>GraduateNU</h1>
           <LoginButtonContainer>
-            <a
-              href="https://admin.khoury.northeastern.edu"
-              style={{ textDecoration: "none" }}
-            >
+            <a href={ADMIN_LINK} style={{ textDecoration: "none" }}>
               <ColorButton variant="contained">Get Started</ColorButton>
             </a>
             {this.dev && (
@@ -227,10 +227,7 @@ export class Onboarding extends React.Component<Props> {
               Navigate the Northeastern graduation requirements and create a
               personalized plan of study.
             </BannerInfoText>
-            <a
-              href="https://admin.khoury.northeastern.edu"
-              style={{ textDecoration: "none" }}
-            >
+            <a href={ADMIN_LINK} style={{ textDecoration: "none" }}>
               <WhiteColorButton variant="contained">
                 Get Started
               </WhiteColorButton>
@@ -257,10 +254,7 @@ export class Onboarding extends React.Component<Props> {
           )}
         </Body>
         <Footer>
-          <a
-            href="https://admin.khoury.northeastern.edu"
-            style={{ textDecoration: "none" }}
-          >
+          <a href={ADMIN_LINK} style={{ textDecoration: "none" }}>
             <WhiteColorButton variant="contained">Get Started</WhiteColorButton>
           </a>
         </Footer>
