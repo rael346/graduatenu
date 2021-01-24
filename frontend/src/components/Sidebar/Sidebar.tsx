@@ -34,6 +34,15 @@ const MajorTitle = styled.p`
   margin-bottom: 12px;
 `;
 
+const CreditTracker = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-right: 12px;
+  margin-left: 4px;
+  margin-bottom: 12px;
+`;
+
 interface SidebarProps {
   isEditable: boolean;
 }
@@ -67,10 +76,20 @@ const MajorSidebarComponent: React.FC<MajorSidebarProps> = ({
       )
     : completedCourses;
 
+  const year = Object.values(schedule.yearMap).map(year => {
+    year.fall.classes,
+      year.spring.classes,
+      year.summer1.classes,
+      year.summer2.classes;
+  });
+
   return (
     <Container>
       <ScrollWrapper>
         <MajorTitle>{major.name}</MajorTitle>
+        <CreditTracker>{major.totalCreditsRequired}</CreditTracker>
+        {console.log("hello", year)}
+
         {major.requirementGroups.map((req, index) => {
           return (
             <RequirementSection
