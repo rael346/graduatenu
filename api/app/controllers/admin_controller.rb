@@ -5,10 +5,10 @@ class AdminController < ApplicationController
   # log in through khoury
   def admin_hook
     # not live yet
-    if request.headers['referer'] === "https://admin.khoury.northeastern.edu/" && !user_params[:is_advisor]
-      head 404
-      return
-    end
+    # if request.headers['referer'] === "https://admin.khoury.northeastern.edu/" && !user_params[:is_advisor]
+    #   head 404
+    #   return
+    # end
 
     error = false
     # see if user is already in our db
@@ -27,10 +27,10 @@ class AdminController < ApplicationController
 
   def entry
     # not live yet
-    if request.headers['referer'] === "https://admin.khoury.northeastern.edu/" && !user_params[:is_advisor]
-      head 404
-      return
-    end
+    # if request.headers['referer'] === "https://admin.khoury.northeastern.edu/" && !user_params[:is_advisor]
+    #   head 404
+    #   return
+    # end
 
     login_token = params[:user_id]
     user_id = decode_login_token(login_token)
