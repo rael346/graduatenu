@@ -1,9 +1,14 @@
 import { IPlanData, StatusEnum } from "./../models/types";
 import { AppState } from "./reducers/state";
 import { CourseWarning, IWarning, DNDScheduleTerm } from "../models/types";
-import { Concentration, Major, Schedule } from "../../../common/types";
+import {
+  Concentration,
+  Major,
+  Schedule,
+  ScheduleTerm,
+} from "../../../common/types";
 import { findMajorFromName } from "../utils/plan-helpers";
-import { getCreditsTakenInSchedule } from "../utils";
+import { convertTermIdToSeason, getCreditsTakenInSchedule } from "../utils";
 
 /**
  * Utility functions to help extract data from the AppState
@@ -188,6 +193,31 @@ export const getCourseWarningsFromState = (
 };
 
 /**
+ * Gets the name of the course with the dndId in a certain semester in the active plan
+ * @param state the current state
+ * @param dndId the id of the course to search for
+ * @param semester the semester the course exists in
+ * @returns the name of that course or empty string if can't find
+ */
+export const getCourseNameFromState = (
+  state: AppState,
+  dndId?: string,
+  semester?: ScheduleTerm
+): string | undefined => {
+  if (dndId && semester) {
+    const season = convertTermIdToSeason(semester.termId);
+    const coursesWithGivenDndId = getActivePlanFromState(
+      state
+    )!.schedule.yearMap[semester.year][season].classes.filter(
+      c => c.dndId == dndId
+    );
+    if (coursesWithGivenDndId) {
+      return coursesWithGivenDndId[0].name;
+    }
+  }
+};
+
+/**
  * Get the current schedule's major from the AppState
  * @param state the AppState
  */
@@ -309,6 +339,9 @@ export const getFolderExpandedFromState = (state: AppState, index: number) =>
 
 export const getAdvisorUserIdFromState = (state: AppState) =>
   state.advisorState.advisor!.id;
+
+export const safelyGetAdvisorUserIdFromState = (state: AppState) =>
+  state.advisorState.advisor?.id;
 
 export const getAdvisorFullNameFromState = (state: AppState) =>
   state.advisorState.advisor!.fullName;

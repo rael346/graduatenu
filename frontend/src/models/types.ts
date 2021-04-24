@@ -354,6 +354,36 @@ export interface IChangeLog {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IAppointments {
+  id: number;
+  studentId: number;
+  fullname: string;
+  email: string;
+  nuid: string;
+  major: string;
+  planId: number;
+  planName: string;
+  planMajor: string;
+  appointmentTime: string;
+}
+
+export interface ICourseManagmentBlock {
+  courseId: string;
+  courseName: string;
+  numStudents: number;
+  numConflicts: number;
+  topThreeConflicts: string[];
+  distribution: {
+    [key: number]: number;
+  };
+}
+
+export interface ICourseWithCount {
+  courseId: string;
+  courseName: string;
+  count: number;
+}
 /** ------------------------------------------------------------------------
  *
  *            OLD STUFF FOLLOWS ! This stuff is big outdated and is only
