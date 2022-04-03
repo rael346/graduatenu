@@ -96,6 +96,9 @@ typings/
 # avoid temp files
 *~
 
+# avoid api/tmp
+api/tmp
+
 # for our mac users
 .DS_Store
 
@@ -141,4 +144,3 @@ graduatenu.code-workspace
 
 # db data
 infrastructure/develop/graduatenu-db-data
-
