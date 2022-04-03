@@ -116,6 +116,8 @@ build/**/*
 /coverage
 
 # production
+lib/
+module/
 build/
 dist/
 
@@ -144,3 +146,12 @@ graduatenu.code-workspace
 
 # db data
 infrastructure/develop/graduatenu-db-data
+
+# yarn2 gitignore for non-zero installs
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
