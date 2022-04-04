@@ -1,9 +1,6 @@
 {
   "name": "@graduate/common",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "module/index.js",
-  "browser": "lib/index.js",
   "private": true,
   "scripts": {
     "dev": "yarn build:dev -w",
@@ -17,6 +14,9 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.8",
+    "@nestjs/mapped-types": "^1.0.1",
     "dataloader": "^1.4.0"
   }
 }
