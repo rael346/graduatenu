@@ -10,3 +10,5 @@ export * from "./dto/create-student.dto";
 export * from "./dto/login-student.dto";
 export * from "./dto/update-plan.dto";
 export * from "./dto/update-student.dto";
+export * from "./response-types/plan-response-type";
+export * from "./response-types/student-response-type";
