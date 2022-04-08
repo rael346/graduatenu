@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "outDir": "./build",
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "experimentalDecorators": true
   },
   "include": ["src"]
 }

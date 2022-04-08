@@ -9,8 +9,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strictPropertyInitialization": false
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"],
   "include": ["**/*.ts"]
