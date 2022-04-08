@@ -13,14 +13,10 @@
     "outDir": "./build",
     "noImplicitAny": true,
     "strictNullChecks": true,
-<<<<<<< HEAD
-    "experimentalDecorators": true
-=======
     "lib": ["dom", "dom.iterable", "esnext"],
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
->>>>>>> main
   },
   "include": ["src"]
 }
