@@ -34,7 +34,7 @@ export class StudentModel {
   concentration: string | null;
   createdAt: Date;
   updatedAt: Date;
-  accessToken?: string;
+  accessToken: string | null;
 }
 
 export class GetStudentResponse extends StudentModel {}
