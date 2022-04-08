@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext", "es5"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,17 +11,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
     "outDir": "./build",
     "noImplicitAny": true,
     "strictNullChecks": true,
-<<<<<<< HEAD
-    "experimentalDecorators": true
-=======
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
->>>>>>> main
+    "downlevelIteration": true
   },
-  "include": ["src"]
+  "include": ["src", "scrapers/src/**/*", "frontend/**/*"]
 }
